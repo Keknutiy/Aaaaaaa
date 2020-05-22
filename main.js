@@ -73,7 +73,8 @@ todoContainer.addEventListener("click", (event) =>{
         }
     }
     else if (target.matches(".todo-remove")){
-        slice(obj[index]);
+        let k = obj[index];
+        obj.splice(index, 1);
     };
     render();
 });
