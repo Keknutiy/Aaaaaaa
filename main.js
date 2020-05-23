@@ -3,14 +3,15 @@ const todoControl = document.querySelector (".todo-control"),
 todoList = document.querySelector (".todo-list"),
 todoCompleted = document.querySelector (".todo-completed"),
 todoContainer = document.querySelector (".todo-container");
-cooka = document.cookie.split("=");
-obj = JSON.parse(cooka[1]?cooka[1]:"[]");
 
-obj = [{value: "Сварить кофе", completed: false},{value: "Помыть посуду", completed: true}];
+
+MainCookie = document.cookie.split("=");
+obj = JSON.parse(MainCookie[1] ? MainCookie[1] : "[]");
 
 const render = () =>{
     todoList.textContent="";
     todoCompleted.textContent="";
+
     obj.forEach((el) =>{
         const li = document.createElement("li");
         li.classList.add("todo-item");
