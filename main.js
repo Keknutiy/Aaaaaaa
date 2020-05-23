@@ -3,19 +3,10 @@ const todoControl = document.querySelector (".todo-control"),
 todoList = document.querySelector (".todo-list"),
 todoCompleted = document.querySelector (".todo-completed"),
 todoContainer = document.querySelector (".todo-container");
-let obj;
-let objOBJ = JSON.parse(localStorage.getItem("obj"));
+cooka = document.cookie.split("=");
+obj = JSON.parse(cooka[1]?cooka[1]:"[]");
 
-//Если бы я поставил [], что и хотел, т.к. пустой, то срабатывало бы условие с массивом, но мне выдало ошибку:
-//Cannot read property 'value' of null
-//Потом поставил null и все заработало :/
-
-if (objOBJ == null){
-    obj = [{value: "Сварить кофе", completed: false},{value: "Помыть посуду", completed: true}];
-}
-else{
-    obj = objOBJ;
-}
+obj = [{value: "Сварить кофе", completed: false},{value: "Помыть посуду", completed: true}];
 
 const render = () =>{
     todoList.textContent="";
@@ -31,7 +22,8 @@ const render = () =>{
         if (el.completed) todoCompleted.append(li);
         else todoList.append(li);
     });
-    localStorage.obj=JSON.stringify(obj);
+    document.cookie = "todo-list=" + JSON.stringify(obj);
+    console.log(document.cookie);
 }
 render();
 
